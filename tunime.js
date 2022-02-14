@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tunime Script
 // @namespace    UserScripts
-// @version      0.1
+// @version      0.2
 // @description  helps to maintain a list of watched TV shows, with a nice visual part
 // @author       Anoncer (https://github.com/MaximKolpak)
 // @match        https://yummyanime.club/*
