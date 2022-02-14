@@ -16,4 +16,6 @@
     const user_agent = "Tunime";
     const client_id = "EKv75uNamao_d3uzFREIfo71l6cpyG2IEUIpBxFgcAM";
 	const client_secret = "WKDClcJlc3grYpBWDbxqQyAFEW0SquPgrvTdXeAfhds";
+
+    alert("Test Update Script");
 })();
