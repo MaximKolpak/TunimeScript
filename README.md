@@ -1,6 +1,7 @@
 # TunimeScript
 
 Script for web site (https://yummyanime.club/) helps to maintain a list of watched TV shows, with a nice visual part.
+
 I am the only one working on the project, because of this, many updates will not be released.
 
 ### Library
@@ -14,5 +15,7 @@ Connected only JQERY
 # Resources
 
 [Yummyanime](https://yummyanime.club) - Work Site Script
+
 [Shikimori](https://shikimori.one) - Anime List
+
 Using [UserScripts](https://github.com/quoid/userscripts) - Huge respect to the authors
