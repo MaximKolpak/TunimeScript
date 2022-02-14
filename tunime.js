@@ -7,6 +7,7 @@
 // @match        https://yummyanime.club/*
 // @require      https://code.jquery.com/jquery-3.6.0.min.js
 // @icon         https://www.google.com/s2/favicons?domain=yummyanime.club
+// @updateURL    https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/tunime.js
 // ==/UserScript==
 
 (function(){
