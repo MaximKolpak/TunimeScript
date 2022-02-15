@@ -2,7 +2,7 @@
 .script-window-${e}{
     width: 100%;
     background: #171F23;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     border-radius: 4px 4px 0 0;
