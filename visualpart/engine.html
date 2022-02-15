@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Engine Visual</title>
-    <link rel="stylesheet" href="style.css"1>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
     <div class="phone">
-
+        <button>Click Me</button>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -18,7 +18,8 @@
 
                 
         $(document).ready(()=>{
-                    $(".debug-engine").css("position", "relative");
+                    $(".debug-engine").css("position", "absolute");
+                    $(".debug-header").css("position", "absolute");
         });
                 }
     </script>
@@ -29,6 +30,7 @@
     max-height: 736px;
     height: 100vh;
     position: relative;
+    overflow: hidden;
 }
 </style>
 </body>
