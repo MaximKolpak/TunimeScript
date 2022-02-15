@@ -1,0 +1,2 @@
+`<div class="script-window-${e}"></div>
+<div class="script-bg-${e} debug-engine"></div>`
