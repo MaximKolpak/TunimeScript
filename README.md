@@ -36,8 +36,10 @@ Connected only JQERY
 [Figma](https://www.figma.com/file/I40RIkkz2KXRTohaHVuBFf/Tunime-Script-IOS?node-id=0%3A1) - Here is an outline for the design of the script, they may still change
 
 ### Support
-[X] IOS (Tested on ios (15.0.2))
-[X] Firefox (Tampermonkey)
+<p>
+- [X] IOS (Tested on ios (15.0.2))
+- [X] Firefox (Tampermonkey)
+</p>
 
 # Resources
 
