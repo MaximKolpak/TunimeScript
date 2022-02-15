@@ -1,6 +1,6 @@
 # TunimeScript
 
-Script for web site (https://yummyanime.club/) helps to maintain a list of watched TV shows, with a nice visual part.
+[image](https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/Icon.png)Script for web site (https://yummyanime.club/) helps to maintain a list of watched TV shows, with a nice visual part.
 
 I am the only one working on the project, because of this, many updates will not be released.
 
