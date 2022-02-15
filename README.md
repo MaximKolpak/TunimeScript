@@ -23,6 +23,7 @@ I am the only one working on the project, because of this, many updates will not
     - [X] Authorization
     - [ ] Anime
     - [ ] Settings
+    - [X] Animation
 - [ ] Authorization
 - [ ] Receive anime
 - [ ] Ability to mark viewed
