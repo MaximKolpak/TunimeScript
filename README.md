@@ -1,4 +1,4 @@
-[![Current Version](https://img.shields.io/badge/version-1.0.7-green.svg)]
+![Current Version](https://img.shields.io/badge/version-1.0.7-green.svg)
 # TunimeScript
 
 <img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/Icon.png" align="right"
