@@ -1,4 +1,11 @@
-![Current Version](https://img.shields.io/badge/version-0.0.2-green.svg)![Git Hub](https://img.shields.io/badge/GitHub-userscripts-lightgrey?style=flat&logo=github) 
+<p align="left">
+    <a href="https://github.com/MaximKolpak/TunimeScript">
+        <img src="https://img.shields.io/badge/version-0.0.2-green.svg" />
+    </a>
+    <a href="https://github.com/quoid/userscripts">
+        <img src="https://img.shields.io/badge/GitHub-userscripts-lightgrey?style=flat&logo=github" />
+    </a>
+</p>
 # TunimeScript
 
 <img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/Icon.png" align="right"
