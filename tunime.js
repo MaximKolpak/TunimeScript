@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tunime Script
 // @namespace    UserScripts
-// @version      0.3
+// @version      0.4
 // @description  helps to maintain a list of watched TV shows, with a nice visual part
 // @author       Anoncer (https://github.com/MaximKolpak)
 // @match        https://yummyanime.club/*
@@ -29,13 +29,15 @@
         animeinfo: "",
         settings: "",
         search: "",
-        maine: ""
+        maine: "",
+        message: ""
     }
 
     const urls = {
         maine: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript@master/visualpart/jstype/main.tunime",
         authorization: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript/visualpart/jstype/auth.tunime",
-        style: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript/visualpart/jstype/style.tunime"
+        style: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript@master/visualpart/jstype/style.tunime",
+        message: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript@master/visualpart/jstype/message.tunime"
     }
 
     let param = {
@@ -56,6 +58,8 @@
         });
         web_buffer.maine = await SimpleGetAsync(urls.maine);
         AddMain(visual_id);
+        SimpleGet(urls.message, (data) => {web_buffer.message = data;});
+        
         CheckLogin();
     });
 
@@ -74,19 +78,25 @@
     async function CheckLogin(){
         param = await GM.getValue(parametrs, param);
         if(param.access == "" || param.refresh == ""){
-            web_buffer.authorization = await SimpleGetAsync(urls.authorization);
-            Authorization(visual_id);
-        }else{
-            RefreshToken((data, status)=>{
-                if(status == "success"){
-                    param.access = data.access_token;
-                    param.refresh = data.refresh_token;
-                    param.created_at = data.created_at;
-                    param.expires_in = data.expires_in;
-                    param = GM.setValue(parametrs, param);
-                }
-            });
+             web_buffer.authorization = await SimpleGetAsync(urls.authorization);
+             Authorization(visual_id);
+         }else{
+             RefreshToken((data, status)=>{
+                 if(status == "success"){
+                     param.access = data.access_token;
+                     param.refresh = data.refresh_token;
+                     param.created_at = data.created_at;
+                     param.expires_in = data.expires_in;
+                     GM.setValue(parametrs, param);
+                     GetMe();
+                 }
+             });
         }
+    }
+
+    async function GetMe(){
+        user_object = await GetAsync('/api/users/whoami');
+        ShowMessage(`Account: ${user_object.nickname}`, "Welcome");
     }
 
     /**
@@ -182,6 +192,7 @@
                 param.created_at = data.created_at;
                 param.expires_in = data.expires_in;
                 param = GM.setValue(parametrs, param);
+                GetMe();
             }
         }
     }
@@ -213,5 +224,43 @@
      */
     function RandomUi(){
         return Math.random().toString(36).substring(2, 9);
+    }
+
+    function ShowMessage(mes1, mes2){
+        let e = visual_id;
+        $("body").append(eval(web_buffer.message));
+        $(`.script-message-${e} > span:nth-child(1)`).html(mes1);
+        $(`.script-message-${e} > span:nth-child(2)`).html(mes2);
+        let t = 0;
+        $(`.script-message-${e}`).addClass(`script-message-show-${e}`);
+        let i = setInterval(()=>{
+            if(t >= 2){
+                $(`.script-message-${e}`).removeClass(`script-message-show-${e}`);
+            }
+            if(t >= 3){
+                clearInterval(i);
+                $(`.script-message-${e}`).remove();
+            }
+            t += 1;
+        },1000);
+    }
+
+
+    //Main Functions 
+
+    const base_url = "https://shikimori.one";
+    let user_object;
+
+    async function GetAsync(url){
+        return new Promise((resolve)=>{
+            $.ajax({
+                method: "GET",
+                url: base_url + url,
+                beforeSend: function(req){
+                    req.setRequestHeader('User-Agent', request.user_agent);
+                    req.setRequestHeader('Authorization', 'Bearer ' + param.access);
+                }
+            }).done(function(data){resolve(data)});
+        });
     }
 })();
