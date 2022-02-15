@@ -15,6 +15,8 @@ I am the only one working on the project, because of this, many updates will not
 - [ ] Ability to mark viewed
     - [ ] Automatically
 - [ ] Choose and remember anime if it turned out to be the wrong one
+- [ ] Anime rating
+- [ ] Settings
 
 ### Library
 
