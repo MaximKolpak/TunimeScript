@@ -6,6 +6,7 @@
         <img src="https://img.shields.io/badge/GitHub-userscripts-lightgrey?style=flat&logo=github" />
     </a>
 </p>
+
 # TunimeScript
 
 <img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/Icon.png" align="right"
