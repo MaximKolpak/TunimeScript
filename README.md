@@ -18,6 +18,7 @@ I am the only one working on the project, because of this, many updates will not
 
 ### Plans
 <img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/video.gif" align="right" alt="Update Version" height="454">
+
 - [ ] Make a visual
     - [X] Authorization
     - [ ] Anime
