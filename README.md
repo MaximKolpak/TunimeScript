@@ -53,3 +53,5 @@ Connected only JQERY
 [Shikimori](https://shikimori.one) - Anime List
 
 Using [UserScripts](https://github.com/quoid/userscripts) - Huge respect to the authors
+
+[OAuth](https://shikimori.one/oauth/applications/574) - Tunime application api
