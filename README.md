@@ -18,6 +18,9 @@ I am the only one working on the project, because of this, many updates will not
 
 ### Plans
 - [ ] Make a visual
+    - [X] Authorization
+    - [ ] Anime
+    - [ ] Settings
 - [ ] Authorization
 - [ ] Receive anime
 - [ ] Ability to mark viewed
