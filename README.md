@@ -1,6 +1,6 @@
 <p align="left">
     <a href="https://github.com/MaximKolpak/TunimeScript">
-        <img src="https://img.shields.io/badge/version-0.0.3-green.svg" />
+        <img src="https://img.shields.io/badge/version-0.0.4-green.svg" />
     </a>
     <a href="https://github.com/quoid/userscripts">
         <img src="https://img.shields.io/badge/GitHub-userscripts-lightgrey?style=flat&logo=github" />
