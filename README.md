@@ -51,4 +51,4 @@ Connected only JQERY
 
 Using [UserScripts](https://github.com/quoid/userscripts) - Huge respect to the authors
 
-<img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/video.gif" align="left" alt="Update Version" height="454">
+<img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/video.gif" align="right" alt="Update Version" height="454">
