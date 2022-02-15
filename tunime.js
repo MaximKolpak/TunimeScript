@@ -33,7 +33,7 @@
     }
 
     const urls = {
-        maine: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript/visualpart/jstype/main.tunime",
+        maine: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript@master/visualpart/jstype/main.tunime",
         authorization: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript/visualpart/jstype/auth.tunime",
         style: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript/visualpart/jstype/style.tunime"
     }
@@ -41,7 +41,8 @@
     let param = {
         access: "",
         refresh: "",
-        date: ""
+        created_at: "",
+        expires_in: ""
     }
 
     let visual_id = ""; //Visual id on style and correct work
@@ -75,15 +76,53 @@
         if(param.access == "" || param.refresh == ""){
             web_buffer.authorization = await SimpleGetAsync(urls.authorization);
             Authorization(visual_id);
+        }else{
+            RefreshToken((data, status)=>{
+                if(status == "success"){
+                    param.access = data.access_token;
+                    param.refresh = data.refresh_token;
+                    param.created_at = data.created_at;
+                    param.expires_in = data.expires_in;
+                    param = GM.setValue(parametrs, param);
+                }
+            });
         }
     }
 
+    /**
+     * 
+     * @param {Function} func - Function response 
+     */
+    function RefreshToken(func){
+        $.ajax({
+            url: 'https://shikimori.one/oauth/token',
+            method: 'POST',
+            beforeSend: function(req){
+                req.setRequestHeader('User-Agent', request.user_agent);
+            },
+            data:{
+                grant_type: "refresh_token",
+                client_id: request.client_id,
+                client_secret: request.client_secret,
+                refresh_token: param.refresh,
+            }
+        }).always(function(data, status){func(data, status);});
+    }
+
+
+    /**
+     * Show Authorization Visual Login
+     * @param {String} Visual ID * 
+     */
     function Authorization(e){
         $(`.script-window-${visual_id}`).append(eval(web_buffer.authorization));
         $(`.authorization-token-${visual_id}`).attr("href", WebAuth);
 
         UiControl();
 
+        /**
+         * Ui Control Click and Another
+         */
         function UiControl(){
             $(`.script-bg-${visual_id}`).click(function(){
                 if($(`.script-bg-${visual_id}`).hasClass(`script-bg-hide-${visual_id}`)){
@@ -100,6 +139,50 @@
                     $(`.script-window-${visual_id}`).removeClass(`script-window-hide-${e}`);
                  }
             });
+
+            $(`.script-form-${visual_id} > button`).click(async function(){
+                let data = $(`#token_${visual_id}`).val();
+                if(data != ""){
+                    PostAuth(data, Auth);
+                }
+            });
+        }
+
+        /**
+         * Authinification api Shikimori
+         * @param {String} code - Token from auth 
+         * @param {*} func - Function response
+         */
+        function PostAuth(code, func){
+                $.ajax({
+                    url: 'https://shikimori.one/oauth/token',
+                    method: 'POST',
+                    beforeSend: function(req){
+                        req.setRequestHeader('User-Agent', request.user_agent);
+                    },
+                    data:{
+                        grant_type: "authorization_code",
+                        client_id: request.client_id,
+                        client_secret: request.client_secret,
+                        code: code,
+                        redirect_uri: "urn:ietf:wg:oauth:2.0:oob"
+                    }
+                }).always(function(data, status){func(data, status);});
+        }
+
+        /**
+         * Response api shikimori
+         * @param {Object} data 
+         * @param {String} status 
+         */
+        function Auth(data, status){
+            if(status == "success"){
+                param.access = data.access_token;
+                param.refresh = data.refresh_token;
+                param.created_at = data.created_at;
+                param.expires_in = data.expires_in;
+                param = GM.setValue(parametrs, param);
+            }
         }
     }
 
