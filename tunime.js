@@ -17,5 +17,16 @@
     const client_id = "EKv75uNamao_d3uzFREIfo71l6cpyG2IEUIpBxFgcAM";
 	const client_secret = "WKDClcJlc3grYpBWDbxqQyAFEW0SquPgrvTdXeAfhds";
 
-    alert("Test Update Script");
+    console.log(await GetGit("https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/tunime.js"));
+
+    /**
+     * Get data from url
+     * Simple get request
+     */
+    async function GetGit(e){
+        return new Promise((resolve) => {
+            $.get(e).done((s)=>{resolve(s)});
+        });
+    }
+
 })();
