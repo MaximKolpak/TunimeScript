@@ -20,10 +20,11 @@ I am the only one working on the project, because of this, many updates will not
 
 - [ ] Make a visual
     - [X] Authorization
+    - [ ] Main Page
     - [ ] Anime
     - [ ] Settings
     - [X] Animation
-- [ ] Authorization
+- [X] Authorization
 - [ ] Receive anime
 - [ ] Ability to mark viewed
     - [ ] Automatically
