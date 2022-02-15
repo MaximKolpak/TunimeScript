@@ -1,2 +1,2 @@
-`<div class="script-window-${e}"></div>
-<div class="script-bg-${e} debug-engine"></div>`
+`<div class="script-window-${e} script-window-hide-${e} debug-header"></div>
+<div class="script-bg-${e} script-bg-hide-${e} debug-engine"></div>`
