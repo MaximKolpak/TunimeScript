@@ -17,10 +17,12 @@ According to my idea, the script should facilitate the introduction of a list of
 I am the only one working on the project, because of this, many updates will not be released.
 
 ### Plans
+
 - [ ] Make a visual
     - [X] Authorization
     - [ ] Anime
     - [ ] Settings
+    - [X] Animation
 - [ ] Authorization
 - [ ] Receive anime
 - [ ] Ability to mark viewed
@@ -44,8 +46,6 @@ Connected only JQERY
     - Firefox [Tampermonkey] (Tested on Windows) 
 
 # Resources
-
-<img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/video.gif" align="left" alt="Update Version" height="454">
 
 [Yummyanime](https://yummyanime.club) - Work Site Script
 
