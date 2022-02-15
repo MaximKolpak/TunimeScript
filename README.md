@@ -17,6 +17,7 @@ According to my idea, the script should facilitate the introduction of a list of
 I am the only one working on the project, because of this, many updates will not be released.
 
 ### Plans
+<img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/video.gif" align="right" alt="Update Version" height="454">
 - [ ] Make a visual
     - [X] Authorization
     - [ ] Anime
@@ -50,5 +51,3 @@ Connected only JQERY
 [Shikimori](https://shikimori.one) - Anime List
 
 Using [UserScripts](https://github.com/quoid/userscripts) - Huge respect to the authors
-
-<img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/video.gif" align="right" alt="Update Version" height="454">
