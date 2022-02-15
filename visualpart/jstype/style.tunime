@@ -121,4 +121,28 @@ button.script-btn-hide-${e} > img{
 
 .script-message-show-${e}{
     transform: translateY(0);
+}
+
+.script-user-info-${e}{
+    border-top: 1px solid #252D31;
+    border-bottom: 1px solid #252D31;
+    margin: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    align-items: center;
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+.script-user-info-${e} > img{
+    border-radius: 50%;
+}
+
+.script-anime-list-${e} > button{
+    margin: 0 0 5px 0;
+}
+
+.script-form-0-${e} > button{
+    margin-top: 0px;
 }`
