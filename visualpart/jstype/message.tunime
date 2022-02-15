@@ -1,0 +1,4 @@
+`<div class="script-message-${e}">
+    <span></span>
+    <span></span>
+</div>`
