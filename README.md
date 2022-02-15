@@ -3,7 +3,8 @@
 
 <img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/Icon.png" align="right"
      alt="Logo by TunimeScript (Anoncer)" width="100" height="100">
-Script for web site [Yummyanime](https://yummyanime.club/) helps to maintain a list of watched TV shows, with a nice visual part.
+Script for web site [Yummyanime](https://yummyanime.club/) helps to maintain a list of watched TV shows, with a nice visual part. 
+According to my idea, the script should facilitate the introduction of a list of watched anime.
 
 I am the only one working on the project, because of this, many updates will not be released.
 
