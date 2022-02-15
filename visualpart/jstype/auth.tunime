@@ -1,12 +1,12 @@
 `<div class="script-header-${e}">
-        <span>Tumine</span>
-        <button class="script-btn-hide-${e}"><img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/more.png" /></button>
-    </div>
-    <div class="script-authorization-${e}">
-        <span>Authorization</span>
-        <a href="#" target="_blank" class="authorization-token-${e}">Get Token</a>
-    </div>
-    <div class="script-form-${e}">
-        <input type="text" placeholder="Token" name="user_token_${e}" id="token_${e}" />
-        <button>Authorizate</button>
-    </div>`
+    <span>Tumine</span>
+    <button class="script-btn-hide-${e}"><img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/more.png" /></button>
+</div>
+<div class="script-authorization-${e}">
+    <span>Authorization</span>
+    <a href="#" target="_blank" class="authorization-token-${e}">Get Token</a>
+</div>
+<div class="script-form-${e}">
+    <input type="text" placeholder="Token" name="user_token_${e}" id="token_${e}" />
+    <button>Authorizate</button>
+</div>`
