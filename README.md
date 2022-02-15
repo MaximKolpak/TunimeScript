@@ -8,6 +8,14 @@ According to my idea, the script should facilitate the introduction of a list of
 
 I am the only one working on the project, because of this, many updates will not be released.
 
+### Plans
+- [ ] Make a visual
+- [ ] Authorization
+- [ ] Receive anime
+- [ ] Ability to mark viewed
+    - [ ] Automatically
+- [ ] Choose and remember anime if it turned out to be the wrong one
+
 ### Library
 
 Connected only JQERY
