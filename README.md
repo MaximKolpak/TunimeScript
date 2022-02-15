@@ -45,14 +45,10 @@ Connected only JQERY
 
 # Resources
 
-
-
-
-
-<img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/video.gif" align="left" alt="Update Version" height="454">
-
 [Yummyanime](https://yummyanime.club) - Work Site Script
 
 [Shikimori](https://shikimori.one) - Anime List
 
 Using [UserScripts](https://github.com/quoid/userscripts) - Huge respect to the authors
+
+<img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/video.gif" align="left" alt="Update Version" height="454">
