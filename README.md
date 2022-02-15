@@ -13,6 +13,8 @@ Connected only JQERY
 
 # UI
 
+<img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/Iphone.png" align="left" alt="Iphone Preview" width="255" height="454">
+
 [Figma](https://www.figma.com/file/I40RIkkz2KXRTohaHVuBFf/Tunime-Script-IOS?node-id=0%3A1) - Here is an outline for the design of the script, they may still change
 
 # Resources
