@@ -7,6 +7,6 @@
         <a href="#" target="_blank" class="authorization-token-${e}">Get Token</a>
     </div>
     <div class="script-form-${e}">
-        <input type="text" placeholder="Token" name="user_token" />
+        <input type="text" placeholder="Token" name="user_token_${e}" id="token_${e}" />
         <button>Authorizate</button>
     </div>`
