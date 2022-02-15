@@ -3,11 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Engine Visual</title>
+    <link rel="stylesheet" href="style.css"1>
 </head>
 <body>
+    <div class="phone">
+
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        //$.get("file:///D:/Project%20Script/gitHub/TunimeScript/visualpart/authorization.html").done(function(e){$(body).append(e);});
+        $.get("authorization.html").done(function(e){$(".phone").append(e);G();});
+
+
+        function G(){
+
+                
+        $(document).ready(()=>{
+                    $(".debug-engine").css("position", "relative");
+        });
+                }
     </script>
+<style>
+.phone{
+    max-width: 414px;
+    width: 100%;
+    max-height: 736px;
+    height: 100vh;
+    position: relative;
+}
+</style>
 </body>
 </html>

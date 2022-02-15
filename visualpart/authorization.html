@@ -1,6 +1,15 @@
-<div class="bot-window-${e}">
-    <div class="bot-header-${e}">
+<div class="script-window-${e}">
+    <div class="script-header-${e}">
         <span>Tumine</span>
-        <button><img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/more.png" /></button>
+        <button class="script-btn-hide-${e}"><img src="https://raw.githubusercontent.com/MaximKolpak/TunimeScript/main/resources/more.png" /></button>
+    </div>
+    <div class="script-authorization-${e}">
+        <span>Authorization</span>
+        <a href="#" class="authorization-token-${e}">Get Token</a>
+    </div>
+    <div class="script-form-${e}">
+        <input type="text" placeholder="Token" name="user_token" />
+        <button>Authorizate</button>
     </div>
 </div>
+<div class="script-bg-${e} debug-engine"></div>
