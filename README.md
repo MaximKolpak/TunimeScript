@@ -21,7 +21,7 @@ I am the only one working on the project, because of this, many updates will not
 - [ ] Make a visual
     - [X] Authorization
     - [X] Main Page
-    - [ ] Anime
+    - [X] Anime
     - [ ] Settings
     - [X] Animation
 - [X] Authorization
