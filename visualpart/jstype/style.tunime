@@ -208,4 +208,8 @@ button.script-btn-hide-${e} > img{
 .script-window-${e} button:hover{
     background: #515291;
     border: 1px solid #556670;
+}
+.script-anime-serias-${e} > .script-watched{
+    background: #515291;
+    border: 1px solid #556670;
 }`
