@@ -42,7 +42,8 @@
         //https://orderbot.slovo-istiny.com.ua/style.tunime
         style: "https://orderbot.slovo-istiny.com.ua/style.tunime",
         message: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript@master/visualpart/jstype/message.tunime",
-        profile: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript@master/visualpart/jstype/account.tunime"
+        profile: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript@master/visualpart/jstype/account.tunime",
+        animeinfo: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript@master/visualpart/jstype/anime.tunime"
     }
 
     let param = {
@@ -53,6 +54,7 @@
     }
 
     let visual_id = ""; //Visual id on style and correct work
+    let user_object;
 
 
     $(document).ready(async function(){
@@ -63,8 +65,9 @@
         });
         web_buffer.maine = await SimpleGetAsync(urls.maine);
         AddMain(visual_id);
-        SimpleGet(urls.message, (data) => {web_buffer.message = data;});
-        SimpleGet(urls.profile, (data) => {web_buffer.profile = data;});
+        SimpleGet(urls.message, (data) => {web_buffer.message = data;}); //Message UI
+        SimpleGet(urls.profile, (data) => {web_buffer.profile = data;}); //Profile UI
+        SimpleGet(urls.animeinfo, (data) => {web_buffer.animeinfo = data}); //Information anime ui
         CheckLogin();
     });
 
@@ -224,7 +227,84 @@
         //Stoped Script From Authentification This =======================================================================================
         //--------------------------------------------------------------------------------------------------------------------------------
         //================================================================================================================================
-        UiProfile(visual_id);
+
+        let pathArray = window.location.pathname.split("/");
+
+        if(pathArray.includes("catalog") && pathArray.includes("item")){
+            UiAnime(visual_id); //Show Anime
+        }else{
+            UiProfile(visual_id); // Show User Profile
+        }
+    }
+
+    function UiAnime(e){
+        $(document).ready(()=>{
+            let animeName = $('.content-page > h1:nth-child(8)').html().trim();
+            AddUI();
+            ShowInfo(animeName);
+        });
+
+        //loadInformation
+        async function ShowInfo(name){
+            let data = await GetAsync(`/api/animes?search=${name}&limit=1`);
+            let anime = await GetAsync(`/api/animes/${data[0].id}/`);
+            let episodes = anime.episodes;
+            console.log(anime);
+            $(`.script-anime-name-${e}`).html(data[0].russian);
+            $(`.script-anime-score-${e}`).html(data[0].score);
+            for (let index = 1; index < episodes + 1; index++) {
+                $(`.script-anime-serias-${e}`).append(`
+                    <button data-id="${index}" id="script-anime-serias-btn-${e}">${index}</button>
+                `);
+            }
+
+            episodes = anime.genres.length;
+
+            for (let index = 0; index < episodes; index++) {
+                $(`.script-anime-tags-${e}`).append(`
+                    <div class="tag">${anime.genres[index].russian}</div>
+                `);
+            }
+
+            UserFrmoAnime(anime.id);
+
+        }
+
+        function AddUI(){
+            $(`.script-window-${e}`).append(eval(web_buffer.animeinfo));
+            UiControl();
+        }
+
+
+        //load information user from anime
+        function UserFrmoAnime(id){
+            Get(`/api/v2/user_rates?user_id=${user_object.id}&target_id=${id}&target_type=Anime`, (data) => {
+                console.log(data[0]);
+                for (let index = 1; index < data[0].episodes + 1; index++) {
+                    $(`.script-anime-serias-${e} > button:nth-child(${index})`).addClass("script-watched");
+                }
+            });
+        }
+
+        function UiControl(){
+            //Hide Script
+            $(`.script-bg-${e}`).click(function(){
+                if($(`.script-bg-${e}`).hasClass(`script-bg-hide-${e}`)){
+                    $(`.script-bg-${e}`).removeClass(`script-bg-hide-${e}`);
+                }else{
+                    $(`.script-bg-${e}`).addClass(`script-bg-hide-${visual_id}`);
+                    $(`.script-window-${e}`).addClass(`script-window-hide-${e}`);
+                }
+            });
+
+            //Show
+            $(`.script-header-${e}`).click(function(){
+                 if($(`.script-bg-${e}`).hasClass(`script-bg-hide-${e}`)){
+                    $(`.script-bg-${e}`).removeClass(`script-bg-hide-${e}`);
+                    $(`.script-window-${e}`).removeClass(`script-window-hide-${e}`);
+                 }
+            });
+        }
     }
 
     /**
@@ -239,11 +319,9 @@
         $(`.script-user-name-${e}`).html(user_object.nickname);
 
         //GetListWatchAnime User
-
         let watchlist;
 
         GetWatchAnime();
-
         //End This List
 
         UiControl();
@@ -363,7 +441,7 @@
     //Main Functions 
 
     const base_url = "https://shikimori.one";
-    let user_object;
+    
 
     async function GetAsync(url){
         return new Promise((resolve)=>{
@@ -376,5 +454,16 @@
                 }
             }).done(function(data){resolve(data)});
         });
+    }
+
+    function Get(url, func){
+        $.ajax({
+            method: "GET",
+            url: base_url + url,
+            beforeSend: function(req){
+                req.setRequestHeader('User-Agent', request.user_agent);
+                req.setRequestHeader('Authorization', 'Bearer ' + param.access);
+            }
+        }).done(function(data){func(data)});
     }
 })();
