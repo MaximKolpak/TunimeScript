@@ -146,3 +146,66 @@ button.script-btn-hide-\$\{e\} > img{
 .script-form-0-\$\{e\} > button{
     margin-top: 0px;
 }
+
+.script-anime-serias-\$\{e\}{
+    border-top: 1px solid #252D31;
+    border-bottom: 1px solid #252D31;
+    margin: 0 10px;
+    padding: 10px 0;
+    font-size: 14px;
+    display: flex;
+    overflow-x: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+ /* Hide scrollbar for Chrome, Safari and Opera */
+ .script-anime-serias-\$\{e\}::-webkit-scrollbar {
+    display: none;
+  }
+
+.script-anime-serias-\$\{e\} > button{
+    min-width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid #252D31;
+    color: #fff;
+    background: #161C21;
+    margin-right: 5px;
+}
+
+.script-none-border{
+    border: none;
+}
+
+.script-anime-info-\$\{e\}{
+    padding: 10px 0px;
+}
+
+.script-anime-scoreicon-\$\{e\}{
+    display: flex;
+    align-items: center;
+}
+.script-anime-scoreicon-\$\{e\}>img{
+    margin-right: 5px;
+}
+
+.script-anime-tags-\$\{e\}{
+    padding: 8px 0 0 0;
+    margin: 0 10px;
+    font-size: 9px;
+    color: #476E61;
+    display: flex;
+    align-items: center;
+}
+.script-anime-tags-\$\{e\} > .tag{
+    padding: 2px 3px;
+    border-radius: 4px;
+    background: #182B2A;
+    margin-right: 5px;
+}
+
+.script-window-\$\{e\} button:hover{
+    background: #515291;
+    border: 1px solid #556670;
+}
