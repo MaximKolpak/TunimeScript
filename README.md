@@ -1,6 +1,6 @@
 <p align="left">
     <a href="https://github.com/MaximKolpak/TunimeScript">
-        <img src="https://img.shields.io/badge/version-0.0.4-green.svg" />
+        <img src="https://img.shields.io/badge/version-0.0.5-green.svg" />
     </a>
     <a href="https://github.com/quoid/userscripts">
         <img src="https://img.shields.io/badge/GitHub-userscripts-lightgrey?style=flat&logo=github" />
@@ -20,12 +20,12 @@ I am the only one working on the project, because of this, many updates will not
 
 - [ ] Make a visual
     - [X] Authorization
-    - [ ] Main Page
+    - [X] Main Page
     - [ ] Anime
     - [ ] Settings
     - [X] Animation
 - [X] Authorization
-- [ ] Receive anime
+- [X] Receive anime
 - [ ] Ability to mark viewed
     - [ ] Automatically
 - [ ] Choose and remember anime if it turned out to be the wrong one

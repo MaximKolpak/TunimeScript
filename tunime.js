@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tunime Script
 // @namespace    UserScripts
-// @version      0.4
+// @version      0.5
 // @description  helps to maintain a list of watched TV shows, with a nice visual part
 // @author       Anoncer (https://github.com/MaximKolpak)
 // @match        https://yummyanime.club/*
@@ -30,14 +30,19 @@
         settings: "",
         search: "",
         maine: "",
-        message: ""
+        message: "",
+        profile: ""
     }
 
     const urls = {
         maine: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript@master/visualpart/jstype/main.tunime",
         authorization: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript/visualpart/jstype/auth.tunime",
-        style: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript@master/visualpart/jstype/style.tunime",
-        message: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript@master/visualpart/jstype/message.tunime"
+        //https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript@master/visualpart/jstype/style.tunime
+        //https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript/visualpart/jstype/style.tunime
+        //https://orderbot.slovo-istiny.com.ua/style.tunime
+        style: "https://orderbot.slovo-istiny.com.ua/style.tunime",
+        message: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript@master/visualpart/jstype/message.tunime",
+        profile: "https://cdn.jsdelivr.net/gh/MaximKolpak/TunimeScript@master/visualpart/jstype/account.tunime"
     }
 
     let param = {
@@ -59,7 +64,7 @@
         web_buffer.maine = await SimpleGetAsync(urls.maine);
         AddMain(visual_id);
         SimpleGet(urls.message, (data) => {web_buffer.message = data;});
-        
+        SimpleGet(urls.profile, (data) => {web_buffer.profile = data;});
         CheckLogin();
     });
 
@@ -94,10 +99,7 @@
         }
     }
 
-    async function GetMe(){
-        user_object = await GetAsync('/api/users/whoami');
-        ShowMessage(`Account: ${user_object.nickname}`, "Welcome");
-    }
+    
 
     /**
      * 
@@ -191,9 +193,121 @@
                 param.refresh = data.refresh_token;
                 param.created_at = data.created_at;
                 param.expires_in = data.expires_in;
-                param = GM.setValue(parametrs, param);
+                GM.setValue(parametrs, param);
+
+                //Remove Control
+                $(`.script-header-${visual_id}`).remove();
+                $(`.script-authorization-${visual_id}`).remove();
+                $(`.script-form-${visual_id}`).remove();
+
+                if($(`.script-bg-${e}`).hasClass(`script-bg-hide-${e}`)){
+                    $(`.script-bg-${e}`).removeClass(`script-bg-hide-${e}`);
+                }else{
+                    $(`.script-bg-${e}`).addClass(`script-bg-hide-${visual_id}`);
+                    $(`.script-window-${e}`).addClass(`script-window-hide-${e}`);
+                }
+
+
                 GetMe();
             }
+        }
+    }
+
+
+
+    /**
+     * Getting info username 
+     */
+    async function GetMe(){
+        user_object = await GetAsync('/api/users/whoami');
+        ShowMessage(`Account: ${user_object.nickname}`, "Welcome");
+        //Stoped Script From Authentification This =======================================================================================
+        //--------------------------------------------------------------------------------------------------------------------------------
+        //================================================================================================================================
+        UiProfile(visual_id);
+    }
+
+    /**
+     * Load UI Profile
+     */
+    function UiProfile(e){
+        $(`.script-window-${e}`).append(eval(web_buffer.profile));
+
+        //Change Image Profile
+        $(`.script-user-info-${e} > img:nth-child(2)`).attr("src", user_object.avatar);
+        //Change Name Profile
+        $(`.script-user-name-${e}`).html(user_object.nickname);
+
+        //GetListWatchAnime User
+
+        let watchlist;
+
+        GetWatchAnime();
+
+        //End This List
+
+        UiControl();
+        
+        function UiControl(){
+            //Hide Script
+            $(`.script-bg-${e}`).click(function(){
+                if($(`.script-bg-${e}`).hasClass(`script-bg-hide-${e}`)){
+                    $(`.script-bg-${e}`).removeClass(`script-bg-hide-${e}`);
+                }else{
+                    $(`.script-bg-${e}`).addClass(`script-bg-hide-${visual_id}`);
+                    $(`.script-window-${e}`).addClass(`script-window-hide-${e}`);
+                }
+            });
+
+            //Show
+            $(`.script-header-${e}`).click(function(){
+                 if($(`.script-bg-${e}`).hasClass(`script-bg-hide-${e}`)){
+                    $(`.script-bg-${e}`).removeClass(`script-bg-hide-${e}`);
+                    $(`.script-window-${e}`).removeClass(`script-window-hide-${e}`);
+                 }
+            });
+
+            //logout
+            $(`.script-form-${e}:nth-child(4) > button:nth-child(1)`).click(function(){
+                param.access = "";
+                param.refresh = "";
+                param.created_at = "";
+                param.expires_in = "";
+                GM.setValue(parametrs, param);
+                window.location.href = `https://yummyanime.club`;
+            });
+
+        }
+
+        async function GetWatchAnime(){
+            watchlist = await GetAsync(`/api/v2/user_rates?user_id=${user_object.id}&status=watching,planned&limit=5`);
+            let a = watchlist.length;
+
+            watchlist.forEach(function(element, i) {
+                setTimeout(async function(){
+
+                    let anime = await GetAsync(`/api/animes/${element.target_id}/`);
+                    let namevis = LenghtName(anime.russian);
+
+                    $(`.script-anime-list-${e}`).append(`<button data-id="${anime.id}" data-name="${anime.russian}" class="anime-btn-${e}">${namevis}</button>`);
+
+                    if((a-1) == i){
+                        $(`.anime-btn-${e}`).click(function(e){
+                            window.location.href = `https://yummyanime.club/search?word=${$(e.currentTarget).data("name")}`;
+                        });
+                    }
+
+                }, 200 * i);
+            });
+        }
+
+        function LenghtName(text){
+            if(text.length >= 45){
+                text = text.substring(0, 45);
+                var lastIndex = text.lastIndexOf(" ");
+                text = text.substring(0, lastIndex) + '...';
+            }
+            return text;
         }
     }
 
